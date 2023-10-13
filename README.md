@@ -1,5 +1,15 @@
 # TorToiSe
 
+## Steps to run
+
+```Python
+pip install -U scipy \
+&& pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 \
+&& pip install -r requirements.txt
+```
+
+--------------------------
+
 Tortoise is a text-to-speech program built with the following priorities:
 
 1. Strong multi-voice capabilities.
