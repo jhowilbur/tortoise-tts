@@ -1,12 +1,23 @@
 import argparse
 import os
 
+import torch
 import torchaudio
 
 from api import TextToSpeech
 from tortoise.utils.audio import load_audio, get_voices, load_voice
 
 if __name__ == '__main__':
+
+    # check gpu if not use cpu in torch
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+        print("There are %d GPU(s) available." % torch.cuda.device_count())
+        print("We will use the GPU:", torch.cuda.get_device_name(0))
+    else:
+        print("No GPU available, using the CPU instead.")
+        device = torch.device("cpu")
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--text', type=str, help='Text to speak.', default="The expressiveness of autoregressive transformers is literally nuts! I absolutely adore them.")
     parser.add_argument('--voice', type=str, help='Selects the voice to use for generation. See options in voices/ directory (and add your own!) '
